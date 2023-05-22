@@ -1,0 +1,54 @@
+﻿@model PhoneManufacturer
+
+@{
+    ViewData["Title"] = "Add a new Brand";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Add a New brand</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group text-center">
+                        <img id="ImagePreview" class="border-info rounded-circle" style="max-width: 150px" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ImageURL"> ImageURL </label>
+                        <input asp-for="ImageURL" class="form-control" />
+                        <span asp-validation-for="ImageURL" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ManufacturerName" class="control-label"></label>
+                        <input asp-for="ManufacturerName" class="form-control" />
+                        <span asp-validation-for="ManufacturerName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                        <a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+
+        $(document).ready(function () {
+            var output = document.getElementById('ImagePreview');
+            output.src = $("#ImageURL").val();
+        })
+
+        $("#ImageURL").on("change", function () {
+            var output = document.getElementById('ImagePreview');
+            output.src = $(this).val();
+        })
+    </script>
+}
